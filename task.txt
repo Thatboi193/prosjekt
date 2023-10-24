@@ -1,0 +1,8 @@
+**Bank Managment system**
+What we need.
+    4-5 features.
+    Withdrawel.
+    Input.
+    Show info.
+Opptional.
+    Password.
