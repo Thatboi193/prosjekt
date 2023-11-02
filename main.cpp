@@ -16,6 +16,7 @@ public:
         } else {
             cout << "Unable to open file for writing." << endl;
         }
+        fam();
     }
 
     void makeUser() {
@@ -25,6 +26,7 @@ public:
         cout << "Balance: ";
         cin >> balance;
         saveToFile();  // Save user info to file after creating
+        fam();
     }
 
     void login() {
@@ -39,7 +41,7 @@ public:
                 if (line.find(username) != string::npos) {  // Check if username is found
                     cout << "Login successful" << endl;
                     name = username;  // Set name to the logged-in username
-                    // Further processing to extract and set balance
+                    // please make work processing to extract and set balance
                     break;
                 }
             }
@@ -47,6 +49,7 @@ public:
         } else {
             cout << "Unable to open file for reading." << endl;
         }
+        fam();
     }
 
     void deposit() {
@@ -55,6 +58,7 @@ public:
         cin >> newAmount;
         balance += newAmount;
         cout << "New balance is " << balance << endl;
+        fam();
     }
 
     void withdraw() {
@@ -63,33 +67,59 @@ public:
         cin >> newAmount;
         balance -= newAmount;  // Corrected to subtract newAmount from balance
         cout << "New balance is " << balance << endl;
+        fam();
     }
 
     void fam() {
         int menu;
         cout << name << " Balance: " << balance << endl;  // Corrected to display name
-        cout << "Type 1: for deposit 2: for withdraw 3: for show balance" << endl;
+        cout << "1. Deposit" << endl;
+        cout << "2. Withdraw"  << endl;
+        cout << "3. Exit" << endl;
         cin >> menu;
         switch (menu) {
             case 1:
-                cout << "deposit" << endl;
                 deposit();
                 break;
             case 2:
-                cout << "withdraw" << endl;
                 withdraw();
                 break;
             case 3:
-                cout << "show balance: " << balance << endl;
+                mainmenu();
                 break;
         }
+    }
+
+    void mainmenu() {
+      	cout << "1. Login" << endl;
+       	cout << "2. Register" << endl;
+      	cout << "3. Exit" << endl;
+        int mm;
+        cin >> mm;
+        switch (mm) {
+            case 1:
+                login();
+                break;
+            case 2:
+                makeUser();
+                break;
+            case 3:
+                system("explorer.exe");
+                break;
+            default:
+                cout << "Invalid option";
+                break;
+        }
+    }
+
+    void showBalance() {
+        cout << balance;
+        fam();
     }
 };
 
 int main() {
     User user1;
-    user1.makeUser();
-    user1.fam();
-
+    user1.mainmenu();
     return 0;
 }
