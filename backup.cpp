@@ -4,7 +4,6 @@
 #include <vector>   // for using the vector container
 #include <sstream>  // for string stream operations
 #include <string>   // for string operations
-#include <limits>   // for limiting input on switch.
 
 // Use the standard namespace to avoid prefixing with std::
 using namespace std;
@@ -58,9 +57,8 @@ public:
         if (outFile.is_open()) {
             // Write each user's name and balance to the file
             for (const User& user : users) {
-                outFile << user.name << "  " << user.balance << endl;
+                outFile << user.name << " " << user.balance << endl;
             }
-
             outFile.close(); // Close the file stream
         } else {
             // Error handling if the file cannot be opened
@@ -115,59 +113,24 @@ public:
 
     // Allows a user to deposit money into their account
     void deposit() {
-    double newAmount; // Variable to hold the deposit amount
-    cout << "Add money to account balance" << endl;
-    
-    // Input the deposit amount
-    // Loop until a valid, positive amount is entered
-    while (true) {
-        cin >> newAmount;
-        if (cin.fail() || newAmount < 0) {
-            cout << "Invalid number - Please enter a positive number:\n";
-            
-            // reset error flags
-            cin.clear();
-            
-            // throw away garbage input
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        } else {
-            // If input is good and positive, break out of the loop
-            break;
-        }
+        double newAmount; // Variable to hold the deposit amount
+        cout << "Add money to account balance" << endl;
+        cin >> newAmount; // Input the deposit amount
+        balance += newAmount; // Update the balance
+        cout << "New balance is " << balance << endl; // Display the new balance
+        saveToFile(); // Save the updated balance to file
+        accountMenu(); // Show the account menu
     }
-    
-    balance += newAmount; // Update the balance
-    cout << "New balance is " << balance << endl; // Display the new balance
-    saveToFile(); // Save the updated balance to file
-    accountMenu(); // Show the account menu
-}
 
     // Allows a user to withdraw money from their account
     void withdraw() {
-        double withdraw; // Variable to hold the withdrawal amount
-        cout << "Withdraw money from account balance" << endl;
-      
-        while (true) {
-        cin >> withdraw;  // Input the withdrawal amount
-        if (cin.fail() || withdraw < 0) {
-            cout << "Invalid number - Please enter a positive number:\n";
-            
-            // reset error flags
-            cin.clear();
-            
-            // throw away garbage input
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        } else {
-            // If input is good and positive, break out of the loop
-            break;
-        }
-    }
-
-
+        double newAmount; // Variable to hold the withdrawal amount
+        cout << "Remove money from account balance" << endl;
+        cin >> newAmount; // Input the withdrawal amount
         // Check if the withdrawal amount is less than or equal to the balance
-        if(withdraw <= balance) {
-            balance -= withdraw; // Update the balance
-            cout << "You withdrew: " << withdraw << "$" << endl; // Display the new balance
+        if(newAmount <= balance) {
+            balance -= newAmount; // Update the balance
+            cout << "New balance is " << balance << endl; // Display the new balance
         } else {
             // Display an error message if there is insufficient balance
             cout << "Insufficient balance." << endl;
@@ -184,19 +147,7 @@ public:
         cout << "1. Deposit" << endl;
         cout << "2. Withdraw" << endl;
         cout << "3. Logout" << endl;
-
-        // takes input choice and throws error if bad input
-        while (!(cin >> menu) && (menu < 1 || menu > 4)) {
-            cout << "Invalid selection - Please input 1 to 3 only.\n";
-            // reset error flags
-            cin.clear();
-            // throw away garbage input
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "1. Deposit" << endl;
-            cout << "2. Withdraw" << endl;
-            cout << "3. Logout" << endl;
-        }
-
+        cin >> menu; // Input the menu choice
         // Switch statement to handle the menu choice
         switch (menu) {
             case 1: // Deposit
@@ -222,20 +173,8 @@ public:
         cout << "1. Login" << endl;
         cout << "2. Register" << endl;
         cout << "3. Exit" << endl;
-
-        
-        while (!(cin >> mm) && (mm < 1 || mm > 4)) {
-            cout << "Invalid selection - Please input 1 to 3 only.\n";
-            // reset error flags
-            cin.clear();
-            // throw away garbage input
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "1. Login" << endl;
-            cout << "2. Register" << endl;
-            cout << "3. Exit" << endl;
-        }
-
-        // Switch statement to handle the main menu
+        cin >> mm; // Input the main menu choice
+        // Switch statement to handle the main menu choice
         switch (mm) {
             case 1: // Login
                 login();
