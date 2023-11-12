@@ -76,6 +76,7 @@ public:
 
     // Allows a new user to create an account
     void makeUser() {
+        system("cls");
         // Prompt the user for their name and starting balance
         cout << "Please enter Name and starting balance: " << endl;
         cout << "Name: ";
@@ -88,6 +89,7 @@ public:
 
     // Allows a user to log in to their account
     void login() {
+        system("cls");
         string username; // Variable to store the username entered by the user
         cout << "Login to account" << endl;
         cout << "Username: ";
@@ -121,6 +123,7 @@ public:
 
     // Allows a user to deposit money into their account
     void deposit() {
+    system("cls");
     double newAmount; // Variable to hold the deposit amount
     cout << "Add money to account balance" << endl;
     
@@ -150,6 +153,7 @@ public:
 
     // Allows a user to withdraw money from their account
     void withdraw() {
+        system("cls");
         double withdraw; // Variable to hold the withdrawal amount
         cout << "Withdraw money from account balance" << endl;
       
@@ -184,6 +188,7 @@ public:
 
     // Displays the account menu and allows the user to select an option
     void accountMenu() {
+        system("cls");
         int menu; // Variable to hold the menu choice
         // Display the user's balance and menu options
         cout << "|||| ACCOUNT MENU ||||" << endl;
@@ -225,6 +230,7 @@ public:
 
     // Displays the main menu and allows the user to select an option
     void mainMenu() {
+        system("cls");
         int mm; // Variable to hold the main menu choice
         // Display the main menu options
         cout << "|||| MAIN MENU ||||" << endl;
