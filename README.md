@@ -1,4 +1,4 @@
-# prosjekt
+# Prosjekt
 **A school projekt for Storslett VGS**
 Made by Tor Vidar Arnesen and Nikolai Mikkelsen Moksnes
 This project simulates a simple banking system, well more like an ATM.
