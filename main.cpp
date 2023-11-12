@@ -1,3 +1,9 @@
+// Made by Tor Vidar Arnesen and Nikolai Mikkelsen Moksnes
+// This project simulates a simple banking system, well more like an ATM.
+// It has login and registration, the profiles gets saved in a txt file for later use so even if you close the program it can still remember you.
+// The essestials are all here. Withdrawal, depositing and showing the balance. 
+
+
 // Include necessary header files
 #include <iostream> // for input and output streams
 #include <fstream>  // for file streams
@@ -180,6 +186,7 @@ public:
     void accountMenu() {
         int menu; // Variable to hold the menu choice
         // Display the user's balance and menu options
+        cout << "|||| ACCOUNT MENU ||||" << endl;
         cout << name << " Balance: " << balance << endl;
         cout << "1. Deposit" << endl;
         cout << "2. Withdraw" << endl;
@@ -207,6 +214,7 @@ public:
                 break;
             case 3: // Logout
                 cout << "Logging out." << endl;
+                mainMenu();
                 break;
             default: // Invalid option
                 cout << "Invalid option. Please try again." << endl;
@@ -219,6 +227,7 @@ public:
     void mainMenu() {
         int mm; // Variable to hold the main menu choice
         // Display the main menu options
+        cout << "|||| MAIN MENU ||||" << endl;
         cout << "1. Login" << endl;
         cout << "2. Register" << endl;
         cout << "3. Exit" << endl;
